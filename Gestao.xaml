@@ -1,0 +1,77 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="controle_financeiro.Gestao"
+             x:Name="GestaoPage"
+             Appearing="OnLancamentosTabSelected"
+             Disappearing="OnLancamentosTabUnselected">
+    <ContentPage.Content>
+
+        <ScrollView VerticalOptions="FillAndExpand">
+
+            <Grid Padding="20" BackgroundColor="#FFFFFF">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Text="Lançamentos"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       Margin="0,20,0,0" />
+
+                <CollectionView Grid.Row="1" ItemsSource="{Binding Aux}" ItemTemplate="{StaticResource SwipeContentTemplate}">
+
+                </CollectionView>
+
+                <Button Grid.Row="2"
+                        Text="Enviar"
+                        FontSize="18"
+                        BackgroundColor="#7CCD7C"
+                        TextColor="Black"
+                        CornerRadius="10"
+                        HorizontalOptions="Center"
+                        Margin="0,20"
+                        IsEnabled="True"
+                        x:Name="btnEnviar"
+                        Clicked="Enviar_Clicked" />
+
+                <StackLayout x:Name="lancamentosLayout" />
+
+            </Grid>
+            
+        </ScrollView>
+        
+    </ContentPage.Content>
+    
+    <ContentPage.Resources>
+        
+        <ResourceDictionary>
+            
+            <DataTemplate x:Key="SwipeContentTemplate">
+                
+                <Grid>
+                    <Grid.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Left" Command="{Binding Source={x:Reference GestaoPage}, Path=BindingContext.OnItemSwipedCommand}" CommandParameter="{Binding .}" />
+                    </Grid.GestureRecognizers>
+                    
+                    <SwipeView>
+                        
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Invoked="Editar_Clicked" Text="Ação 1" BackgroundColor="#CEE8C3" />
+                                <SwipeItem Invoked="Remover_Clicked" Text="Ação 2" BackgroundColor="#7CCD7C" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <SwipeView.Content>
+                            <Label Text="{Binding Text}" FontSize="20" Margin="10" />
+                        </SwipeView.Content>
+                    </SwipeView>
+
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

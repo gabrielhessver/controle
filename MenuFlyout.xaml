@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="controle_financeiro.MenuFlyout"
+             Title="Flyout">
+    
+    <StackLayout>
+
+        <ListView 
+        x:Name="MenuItemsListView"
+        SeparatorVisibility="None"
+        HasUnevenRows="true"
+        ItemsSource="{Binding MenuItems}">
+
+            <ListView.Header>
+                          
+                <Grid BackgroundColor="#CEE8C3">
+                    
+                    <Grid.ColumnDefinitions>
+                        
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+                
+            </ListView.Header>
+            
+            <ListView.ItemTemplate>
+                
+                <DataTemplate>
+                    
+                    <ViewCell>
+                        
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" BackgroundColor="#FFFFFF">
+                            
+                            <Grid>
+                                
+                                <Grid.RowDefinitions>
+                                    
+                                    <RowDefinition Height="60" />
+                                    
+                                </Grid.RowDefinitions>
+                                                         
+                                <Grid.ColumnDefinitions>
+                                    
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                    
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image Source="{Binding ImageSource}" 
+                                       Grid.Column="0"
+                                       Grid.Row="0"
+                                       HeightRequest="30" 
+                                       VerticalOptions="End"
+                                       HorizontalOptions="Center"
+                                />
+                                
+                                <Label VerticalOptions="FillAndExpand"
+                                       Grid.Column="1"
+                                       Grid.Row="0"      
+                                       VerticalTextAlignment="End" 
+                                       Text="{Binding PageName}" 
+                                       FontSize="24"/>
+                                
+                                <BoxView HeightRequest="1" 
+                                         Color="Black"
+                                         Margin="0,0,0,-3"
+                                         Grid.ColumnSpan="2"
+                                         VerticalOptions="End"
+                                         Grid.Column="0"
+                                         Grid.Row="2"
+                                />
+                                
+                            </Grid>
+                         </StackLayout>
+                    </ViewCell>
+                 </DataTemplate>
+             </ListView.ItemTemplate>
+        </ListView>
+     </StackLayout>
+</ContentPage>
